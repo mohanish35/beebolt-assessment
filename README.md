@@ -2,7 +2,7 @@
 Package Distribution algorithm for Beebolt Assessment.
 
 ## Installation
-  1. Clone the repo (obviously, lol)
+  1. Clone the repo
   2. Install packages: ```npm i```
   3. Start the application: ```npm start```
 
