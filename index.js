@@ -26,7 +26,8 @@ inquirer
     }, {
       type: 'number',
       name: 'drivers',
-      message: 'Enter the number of drivers (>1)'
+      message: 'Enter the number of drivers (>1)',
+      default: 5
     }
   ])
   .then((answers) => {
