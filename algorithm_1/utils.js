@@ -1,5 +1,5 @@
 import { findEuclideanDistance } from '../utils.js'
-import constants from '../constants.js'
+import { origin } from '../constants.js'
 
 export const assignClusterToPackages = (centroids, packages) => {
   for (let p_itr = 0; p_itr < packages.length; p_itr++) {
@@ -66,7 +66,7 @@ export const parsePackages = (pkg) => {
   return pkg.map(({ name, src, dest }) => {
     return {
       name,
-      src: findEuclideanDistance(constants.origin, src),
+      src: findEuclideanDistance(origin, src),
       dest: findEuclideanDistance(src, dest),
       cluster: 0
     }

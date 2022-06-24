@@ -1,6 +1,6 @@
-const { findEuclideanDistance } = require('../utils')
+import { findEuclideanDistance } from '../utils.js'
 
-const parsePackages = (packages) => {
+export const parsePackages = (packages) => {
   return packages.map(({ name, src, dest }) => {
     return {
       name,
@@ -13,7 +13,7 @@ const parsePackages = (packages) => {
   })
 }
 
-const assignClusterToPackages = (centroids, resolvedPackages) => {
+export const assignClusterToPackages = (centroids, resolvedPackages) => {
   for (let p_itr = 0; p_itr < resolvedPackages.length; p_itr++) {
     let minimumDistanceFromCluster = Infinity
 
@@ -31,8 +31,8 @@ const assignClusterToPackages = (centroids, resolvedPackages) => {
   return resolvedPackages
 }
 
-const updateCentroids = (centroids, packages) => {
-  const oldClusterConfiguration = packages.map(package => package.cluster)
+export const updateCentroids = (centroids, packages) => {
+  const oldClusterConfiguration = packages.map(pkg => pkg.cluster)
 
   for (let c_itr = 0; c_itr < centroids.coordinates.length; c_itr++) {
     let x1_coordinate = 0
@@ -65,29 +65,22 @@ const updateCentroids = (centroids, packages) => {
 
   packages = assignClusterToPackages(centroids.coordinates, packages)
 
-  const newClusterConfiguration = packages.map(package => package.cluster)
+  const newClusterConfiguration = packages.map(pkg => pkg.cluster)
   
   centroids.foundOptimalCentroids = oldClusterConfiguration.every((value, index) => value === newClusterConfiguration[index])
 
   return centroids
 }
 
-const formatAndPrintOutput = (package, coordinates) => {
-  package = package.map(package => {
-    package['cluster (x1)'] = coordinates[package.cluster][0]
-    package['cluster (x2)'] = coordinates[package.cluster][1]
-    package['cluster (y1)'] = coordinates[package.cluster][2]
-    package['cluster (y2)'] = coordinates[package.cluster][3]
+export const formatAndPrintOutput = (packages, coordinates) => {
+  packages = packages.map(pkg => {
+    pkg['cluster (x1)'] = coordinates[pkg.cluster][0]
+    pkg['cluster (x2)'] = coordinates[pkg.cluster][1]
+    pkg['cluster (y1)'] = coordinates[pkg.cluster][2]
+    pkg['cluster (y2)'] = coordinates[pkg.cluster][3]
 
-    return package
+    return pkg
   })
 
-  console.table(package)
-}
-
-module.exports = {
-  parsePackages,
-  assignClusterToPackages,
-  updateCentroids,
-  formatAndPrintOutput
+  console.table(packages)
 }
