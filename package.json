@@ -1,0 +1,22 @@
+{
+  "name": "beebolt_assessment",
+  "version": "1.0.0",
+  "description": "Package Assignment Algorithm for Beebolt assessment",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -I --exec babel-node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mohanish Mankar",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@babel/node": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
+    "nodemon": "^2.0.18"
+  },
+  "type": "module",
+  "dependencies": {
+    "inquirer": "^9.0.0"
+  }
+}
