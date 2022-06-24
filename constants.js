@@ -1,3 +1,3 @@
-module.exports = {
-  origin: [0, 0]
+export default { 
+  origin: [0, 0] 
 }

@@ -1,7 +1,7 @@
-const { findEuclideanDistance } = require('../utils')
-const constants = require('../constants')
+import { findEuclideanDistance } from '../utils.js'
+import constants from '../constants.js'
 
-const assignClusterToPackages = (centroids, packages) => {
+export const assignClusterToPackages = (centroids, packages) => {
   for (let p_itr = 0; p_itr < packages.length; p_itr++) {
     let minimumDistanceFromCluster = Infinity
 
@@ -18,8 +18,8 @@ const assignClusterToPackages = (centroids, packages) => {
   return packages
 }
 
-const updateCentroids = (centroids, packages) => {
-  const oldClusterConfiguration = packages.map(package => package.cluster)
+export const updateCentroids = (centroids, packages) => {
+  const oldClusterConfiguration = packages.map(pkg => pkg.cluster)
 
   for (let c_itr = 0; c_itr < centroids.coordinates.length; c_itr++) {
     let x_coordinate = 0
@@ -44,26 +44,26 @@ const updateCentroids = (centroids, packages) => {
 
   packages = assignClusterToPackages(centroids.coordinates, packages)
 
-  const newClusterConfiguration = packages.map(package => package.cluster)
+  const newClusterConfiguration = packages.map(pkg => pkg.cluster)
   
   centroids.foundOptimalCentroids = oldClusterConfiguration.every((value, index) => value === newClusterConfiguration[index])
 
   return centroids
 }
 
-const formatAndPrintOutput = (package, coordinates) => {
-  package = package.map(package => {
-    package['cluster (x)'] = coordinates[package.cluster][0]
-    package['cluster (y)'] = coordinates[package.cluster][1]
+export const formatAndPrintOutput = (pkg, coordinates) => {
+  pkg = pkg.map(pkg => {
+    pkg['cluster (x)'] = coordinates[pkg.cluster][0]
+    pkg['cluster (y)'] = coordinates[pkg.cluster][1]
 
-    return package
+    return pkg
   })
 
-  console.table(package)
+  console.table(pkg)
 }
 
-const parsePackages = (packages) => {
-  return packages.map(({ name, src, dest }) => {
+export const parsePackages = (pkg) => {
+  return pkg.map(({ name, src, dest }) => {
     return {
       name,
       src: findEuclideanDistance(constants.origin, src),
@@ -71,12 +71,4 @@ const parsePackages = (packages) => {
       cluster: 0
     }
   })
-}
-
-
-module.exports = {
-  assignClusterToPackages,
-  updateCentroids,
-  parsePackages,
-  formatAndPrintOutput
 }

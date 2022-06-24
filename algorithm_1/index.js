@@ -1,8 +1,7 @@
-const { printIteration } = require('../utils')
-const { getRandomPackages, getHardCodedPackages } = require('../__tests__')
-const { assignClusterToPackages, updateCentroids, parsePackages, formatAndPrintOutput } = require('./utils')
+import { printIteration } from '../utils.js'
+import { assignClusterToPackages, updateCentroids, parsePackages, formatAndPrintOutput } from './utils.js'
 
-function assignPackages (packages, drivers) {
+export const assignPackages = (packages, drivers) => {
   let parsedPackages = parsePackages(packages)
   let centroids = {
     coordinates: parsedPackages.map(({ src, dest }) => {
@@ -24,9 +23,4 @@ function assignPackages (packages, drivers) {
   formatAndPrintOutput(parsedPackages, centroids.coordinates)
 }
 
-const packages = getRandomPackages
-// const packages = getHardCodedPackages
-
-const drivers = 5
-
-assignPackages(packages, drivers)
+// assignPackages(packages, drivers)

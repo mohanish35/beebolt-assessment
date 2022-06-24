@@ -1,16 +1,16 @@
-const getRandomCoordinate = () => {
+const _getRandomCoordinate = () => {
   return (Math.random() * 90) + (-1 * ((Math.random() * 90)))
 }
 
-const getRandomPackages = Array.from({length: 100}, (_, idx) => {
+export const getRandomPackages = Array.from({length: 100}, (_, idx) => {
   return {
     name: `package_${idx}`,
-    src: [getRandomCoordinate(), getRandomCoordinate()],
-    dest: [getRandomCoordinate(), getRandomCoordinate()]
+    src: [_getRandomCoordinate(), _getRandomCoordinate()],
+    dest: [_getRandomCoordinate(), _getRandomCoordinate()]
   }
 });
 
-const getHardCodedPackages = [{
+export const getHardCodedPackages = [{
   name: "package_1",
   src: [12, 32],
   dest: [54, 12]
@@ -51,8 +51,3 @@ const getHardCodedPackages = [{
   src: [34, 51],
   dest: [45, 15]
 }]
-
-module.exports = {
-  getRandomPackages,
-  getHardCodedPackages
-}
